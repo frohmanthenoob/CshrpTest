@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CsharpMVCTest.Controllers.HomeController.ggc>
+
+@{
+    ViewBag.Title = "gg";
+}
+
+@{Html.RenderAction("xx");}
+
+<h2>gg</h2>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-md-3">
+            @item.xInt
+        </div>
+        <div class="col-md-3">
+            @item.xString
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+}
+
+@{Html.RenderAction("yy");}
+

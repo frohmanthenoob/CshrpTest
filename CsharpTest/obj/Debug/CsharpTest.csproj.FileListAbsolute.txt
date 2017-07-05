@@ -1,0 +1,12 @@
+C:\Users\Administrator\Desktop\ssss\CsharpTest\CsharpTest\bin\Debug\CsharpTest.exe.config
+C:\Users\Administrator\Desktop\ssss\CsharpTest\CsharpTest\bin\Debug\CsharpTest.exe
+C:\Users\Administrator\Desktop\ssss\CsharpTest\CsharpTest\bin\Debug\CsharpTest.pdb
+C:\Users\Administrator\Desktop\ssss\CsharpTest\CsharpTest\obj\Debug\CsharpTest.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\ssss\CsharpTest\CsharpTest\obj\Debug\CsharpTest.exe
+C:\Users\Administrator\Desktop\ssss\CsharpTest\CsharpTest\obj\Debug\CsharpTest.pdb
+C:\Users\Administrator\Desktop\CsharpTest\CsharpTest\bin\Debug\CsharpTest.exe.config
+C:\Users\Administrator\Desktop\CsharpTest\CsharpTest\obj\Debug\CsharpTest.exe
+C:\Users\Administrator\Desktop\CsharpTest\CsharpTest\obj\Debug\CsharpTest.pdb
+C:\Users\Administrator\Desktop\CsharpTest\CsharpTest\bin\Debug\CsharpTest.exe
+C:\Users\Administrator\Desktop\CsharpTest\CsharpTest\bin\Debug\CsharpTest.pdb
+C:\Users\Administrator\Desktop\CsharpTest\CsharpTest\obj\Debug\CsharpTest.csprojResolveAssemblyReference.cache

@@ -1,0 +1,34 @@
+﻿@using CsharpMVCTest.Models
+@{
+    Layout = null;
+}
+
+@helper Cascade(myLittleViewModel model)
+{
+    <div onclick='$("@model.randomID").slideToggle();'>@model.Date <span class="caret"></span></div>
+    <div id="aa">
+        @foreach (var item in model.examSubject)
+        {
+            @mkDOM(item.subject, "P")
+            <div style="background-color: #f2dede;">@item.subject</div>
+        }
+    </div>
+}
+
+@functions {
+    public static IHtmlString mkDOM(object a, string tagName)
+    {
+        string aa = "<" + tagName + ">" + a + "</" + tagName + ">";
+        return new HtmlString(aa);
+    }
+    public static IHtmlString mkDOM(object a, string tagName,string styleString)
+    {
+        string aa = "<" + tagName + " style=\"" + styleString + "\" >" + a + "</" + tagName + ">";
+        return new HtmlString(aa);
+    }
+    public static IHtmlString mkDOM(object a, string tagName, string styleString,string classString)
+    {
+        string aa = "<" + tagName + " class=\"" + classString + "\" style=\"" + styleString + "\" >" + a + "</" + tagName + ">";
+        return new HtmlString(aa);
+    }
+}

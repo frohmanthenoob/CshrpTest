@@ -1,0 +1,25 @@
+﻿@model CsharpMVCTest.Models.myLittleViewModel
+@{
+    ViewBag.Title = "xx";
+    Layout = null;
+}
+
+<h2>xx</h2>
+
+@UiHelper.Cascade(Model)
+@for (int i = 0; i < 5; i++)
+{
+    @UiHelper.mkDOM(i, "div", "font-size:20px;background-color: #878787;")
+}
+<div>@abc()</div>
+
+
+
+
+@functions {
+    public string abc() {
+
+        return "gg";
+    }
+}
+
