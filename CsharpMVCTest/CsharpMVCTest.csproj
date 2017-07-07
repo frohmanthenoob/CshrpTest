@@ -132,11 +132,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewHomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\myLittleViewModel.cs" />
+    <Compile Include="Models\newHome.cs" />
     <Compile Include="Models\UiHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -196,6 +198,7 @@
     <Content Include="Views\Home\gg.cshtml" />
     <Content Include="Views\Home\yy.cshtml" />
     <Content Include="Views\Home\xx.cshtml" />
+    <Content Include="Views\NewHome\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
