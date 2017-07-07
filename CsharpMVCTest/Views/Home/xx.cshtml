@@ -1,4 +1,5 @@
-﻿@model CsharpMVCTest.Models.myLittleViewModel
+﻿@using CsharpMVCTest.Models
+@model CsharpMVCTest.Models.myLittleViewModel
 @{
     ViewBag.Title = "xx";
     Layout = null;
@@ -7,19 +8,13 @@
 <h2>xx</h2>
 
 @UiHelper.Cascade(Model)
-@for (int i = 0; i < 5; i++)
-{
-    @UiHelper.mkDOM(i, "div", "font-size:20px;background-color: #878787;")
-}
-<div>@abc()</div>
-
-
-
-
-@functions {
-    public string abc() {
-
-        return "gg";
+@{
+    DOMProperty aa = new DOMProperty() { tagName = "div", styleName = "font-size:20px;background-color: #878787;", className = "" };
+    for (int i = 0; i < 5; i++)
+    {
+        var a = CsharpMVCTest.Models.UiHelper<int>.mkDOM(i, aa);
+        @a
+        @CsharpMVCTest.Models.UiHelper.mkDOM(i, aa);
+    
     }
 }
-
