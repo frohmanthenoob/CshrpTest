@@ -199,6 +199,7 @@
     <Content Include="Views\Home\yy.cshtml" />
     <Content Include="Views\Home\xx.cshtml" />
     <Content Include="Views\NewHome\Index.cshtml" />
+    <Content Include="Views\NewHome\testRenderAction.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

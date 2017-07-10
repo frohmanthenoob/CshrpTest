@@ -18,5 +18,9 @@ namespace CsharpMVCTest.Controllers
             aa.SecondPart = newHome.bb();
             return View(aa);
         }
+        public ActionResult testRenderAction()
+        {
+            return View();
+        }
 	}
 }
