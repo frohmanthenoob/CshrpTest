@@ -19,7 +19,7 @@ namespace CsharpTest
         {
             string a = date.Substring(0, 3);
             string b = date.Substring(3, 2);
-            string c = date.Substring(5, 2);
+            string c = date.Substring(5, date.Length-5);
             return a + "/" + b + "/" + c;
         }
         static void Main(string[] args)
@@ -186,28 +186,76 @@ namespace CsharpTest
             //    }
             //}
 
-            List<Pet> petsList =
-                new List<Pet>{ new Pet { Name="Barley", Age=8.3 },
-                               new Pet { Name="Boots", Age=4.9 },
-                               new Pet { Name="Whiskers", Age=1.5 },
-                               new Pet { Name="Daisy", Age=4.3 } };
-            IEnumerable<PetInfo> query = petsList.GroupBy<Pet, double, double, PetInfo>(
-            pet => Math.Floor(pet.Age), //keySelector
-            pet => pet.Age,             //elementSelector
-            (baseAge, ages) => new PetInfo()   //resultSelector
-            {
-                Key = baseAge,
-                Count = ages.Count(),
-                Min = ages.Min(),
-                Max = ages.Max()
-            });
+            //List<Pet> petsList =
+            //    new List<Pet>{ new Pet { Name="Barley", Age=8.3 },
+            //                   new Pet { Name="Boots", Age=4.9 },
+            //                   new Pet { Name="Whiskers", Age=1.5 },
+            //                   new Pet { Name="Daisy", Age=4.3 } };
+            //IEnumerable<PetInfo> query = petsList.GroupBy<Pet, double, double, PetInfo>(
+            //pet => Math.Floor(pet.Age), //keySelector
+            //pet => pet.Age,             //elementSelector
+            //(baseAge, ages) => new PetInfo()   //resultSelector
+            //{
+            //    Key = baseAge,
+            //    Count = ages.Count(),
+            //    Min = ages.Min(),
+            //    Max = ages.Max()
+            //});
 
-            foreach (var item in query)
+            //foreach (var item in query)
+            //{
+            //    Console.WriteLine(
+            //        "Key:baseAge = {0},\n Count:ages.Count() = {1},\n Min:ages.Min() = {2},\n Max:ages.Max() = {3}",
+            //        item.Key, item.Count, item.Min, item.Max);
+            //}
+
+            //Category<string> a = new ggCategory() { subdivision="yy"};
+            //a.division = "gg";
+            //Console.WriteLine(a);
+            //Console.WriteLine("--------------------------------------------------");
+            //ICategory<string> b = new yyCategory() { subdivision = "gg" };
+            //b.division = "yy";
+            //ICategory<string> c = b;
+            //Console.WriteLine(b.);
+            //Console.WriteLine(c.division + " " + c.subdivision);
+
+            IEnumerable<LogEntry> sourceItems = new List<LogEntry> {
+                new LogEntry {ID=1   ,UserName="foo      ", TimeStamp= new DateTime(2010 ,1,01),Details="Account created "}    ,
+                new LogEntry {ID=2   ,UserName="zip      ", TimeStamp= new DateTime(2010 ,2,02),Details="Account created "}    ,
+                new LogEntry {ID=3   ,UserName="bar      ", TimeStamp= new DateTime(2010 ,2,02),Details="Account created "}    ,
+                new LogEntry {ID=4   ,UserName="sandwich ", TimeStamp= new DateTime(2010 ,3,03),Details="Account created "}    ,
+                new LogEntry {ID=5   ,UserName="bar      ", TimeStamp= new DateTime(2010 ,5,05),Details="Stole food      "}    ,
+                new LogEntry {ID=6   ,UserName="foo      ", TimeStamp= new DateTime(2010 ,5,05),Details="Can't find food "}    ,
+                new LogEntry {ID=7   ,UserName="sandwich ", TimeStamp= new DateTime(2010 ,8,08),Details="Donated food    "}    ,
+                new LogEntry {ID=8   ,UserName="sandwich ", TimeStamp= new DateTime(2010 ,9,09),Details="Ate more food   "}    ,
+                new LogEntry {ID=9   ,UserName="foo      ", TimeStamp= new DateTime(2010 ,9,09),Details="Ate food        "}    ,
+                new LogEntry {ID=10  ,UserName="bar      ", TimeStamp= new DateTime(2010,11,11),Details="Can't find food "}    ,
+                new LogEntry {ID=11  ,UserName="foo      ", TimeStamp= new DateTime(2010,11,12),Details="Account created "}    
+
+            };
+
+
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();//引用stopwatch物件
+            sw.Reset();//碼表歸零
+            sw.Start();//碼表開始計時
+            //var aa = sourceItems.GroupBy(m => m.UserName, y => y.Details);
+            //IEnumerable<IGrouping<string,string>> aa = sourceItems.GroupBy(m => new { m.UserName, m.Details }).Select(g => g.First()).OrderByDescending(m => m.UserName).Select(m => new { UserName = m.UserName, Details = m.Details }).GroupBy(m=>m.UserName,m=>m.Details);
+
+            IEnumerable<IGrouping<string, string>> aa = sourceItems.Select(m => new { UserName = m.UserName, Details = m.Details }).GroupBy(m => new { m.UserName, m.Details }).Select(g => g.First()).OrderByDescending(m => m.UserName).GroupBy(m => m.UserName, m => m.Details);
+            
+            sw.Stop();//碼錶停止
+            //印出所花費的總豪秒數
+            string result1 = sw.Elapsed.TotalMilliseconds.ToString();
+            Console.WriteLine(result1);
+            foreach (IGrouping<string, string> item in aa)
             {
-                Console.WriteLine(
-                    "Key:baseAge = {0},\n Count:ages.Count() = {1},\n Min:ages.Min() = {2},\n Max:ages.Max() = {3}",
-                    item.Key, item.Count, item.Min, item.Max);
+                Console.WriteLine(item.Key);
+                foreach (string items in item)
+                {
+                    Console.WriteLine(" "+items);
+                }
             }
+
 
             Console.ReadKey();
         }
@@ -269,5 +317,35 @@ namespace CsharpTest
         public double Count { get; set; }
         public double Min { get; set; }
         public double Max { get; set; }
+    }
+
+    public abstract class Category<T>
+    {
+        public T division { get; set; }
+        public T subdivision { get; set; }
+    }
+
+    public class ggCategory : Category<string> 
+    {
+        public override string ToString()
+        {
+            return division+" "+subdivision;
+        }
+    }
+    interface ICategory<T>
+    {
+        T division { get; set; }
+        T subdivision { get; set; }
+    }
+    public class yyCategory : ICategory<string>
+    {
+        public string division { get; set; }
+
+        public string subdivision { get; set; }
+
+        public override string ToString()
+        {
+            return division + " " + subdivision;
+        }
     }
 }
